@@ -1,5 +1,5 @@
-const canvasWidth = 540;
-const canvasHeight = 960;
+const canvasWidth = 600;
+const canvasHeight = 600;
 
 
 let mainCanvas;
@@ -29,7 +29,7 @@ function songLoaded() {
   songButton.elt.disabled = false;
   // let now = millis();
   // songEpoch = now + 5000;
-  if(debugFastRefresh && getAudioContext().state != "suspended"){
+  if (debugFastRefresh && getAudioContext().state != "suspended") {
     switchRunMode()
   }
 }
@@ -51,8 +51,8 @@ let volume_length = 0;
 function setup() {
   main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
-  song = loadSound('song.mp3', songLoaded, songLoadedError, songLoadedSoFar);  
-  
+  song = loadSound('song.mp3', songLoaded, songLoadedError, songLoadedSoFar);
+
   frameRate(60);
   angleMode(DEGREES);
 
@@ -82,7 +82,7 @@ function setup() {
   vol4 = [];
   volumes = [vol1, vol2, vol3, vol4];
   volume_table_length = table.getRowCount();
-  for(let i=0; i< volume_table_length;i++) {
+  for (let i = 0; i < volume_table_length; i++) {
     let roww = table["rows"][i].arr;
     vol1.push(float(roww[1]));
     vol2.push(float(roww[2]));
@@ -96,17 +96,17 @@ function setup() {
   }
   volumes[0] = vol1;
   */
-  if(smoothing != 0) {
+  if (smoothing != 0) {
     let radius = map(smoothing, 0, 100, 0, 3);
-    for(let i=0; i<4; i++) {
+    for (let i = 0; i < 4; i++) {
       volumes[i] = Taira.smoothen(volumes[i], Taira.ALGORITHMS.GAUSSIAN, 10, radius, true)
     }
   }
 }
 
 function switchRunMode() {
-  if(editorMode) {
-    if(songLoadStatus == "loading") {
+  if (editorMode) {
+    if (songLoadStatus == "loading") {
       alert("Song still loading...");
       return;
     }
@@ -126,7 +126,7 @@ function switchRunMode() {
     songButton.elt.innerHTML = "stop music";
   }
   else {
-    if(songIsPlaying) {
+    if (songIsPlaying) {
       song.stop();
       songIsPlaying = false;
     }
@@ -152,25 +152,25 @@ function draw() {
     draw_one_frame(w, s1, s2, s3, s4, 0);
   }
   else {
-    if(songEpoch > 0) {
+    if (songEpoch > 0) {
       let now = millis();
       let songOffset = now - songEpoch;
-      if(songOffset < 0) {
+      if (songOffset < 0) {
         background(0);
         let secondsRemaining = songOffset / -1000.0;
         let intSecs = int(secondsRemaining);
-        if(intSecs > 0) {
+        if (intSecs > 0) {
           let remainder = secondsRemaining - intSecs;
           let curAngle = map(remainder, 0, 1, 630, 270);
           // print(secondsRemaining, intSecs, remainder, curAngle);
           noStroke();
           fill(200);
-          arc(width/2, height/2, 400, 400, curAngle, curAngle+10);
+          arc(width / 2, height / 2, 400, 400, curAngle, curAngle + 10);
           stroke(255);
           fill(255);
           textSize(200);
           textAlign(CENTER, CENTER);
-          text(intSecs, width/2, height/2);
+          text(intSecs, width / 2, height / 2);
         }
         // text("Song starting in: " + secondsRemaining, width/2, height/2)      
       }
@@ -183,7 +183,7 @@ function draw() {
         }
       }
     }
-    if(songIsPlaying) {
+    if (songIsPlaying) {
       let curMillis = millis();
       let timeOffset = curMillis - songEpoch;
       let curSlice = int(60 * timeOffset / 1000.0);
@@ -202,8 +202,8 @@ function draw() {
         slider2.value(roww[1]);
         slider3.value(roww[2]);
         slider4.value(roww[3]);
-       draw_one_frame(cur_words, roww[0], roww[1], roww[2], roww[3], curSlice);//currentTime()
-       //draw_one_frame(cur_words, roww[0], roww[1], roww[2], roww[3], song.currentTime());
+        draw_one_frame(cur_words, roww[0], roww[1], roww[2], roww[3], curSlice);//currentTime()
+        //draw_one_frame(cur_words, roww[0], roww[1], roww[2], roww[3], song.currentTime());
       }
     }
   }
