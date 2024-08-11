@@ -1,38 +1,49 @@
 
+//parameters
+let windowX = 300
+let windowY = 150
+
+let img;
+let firstRun = true
+
+
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(46, 42, 117)
+  background(87, 85, 81)
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
 
-  let ellipseLength = map(other, 0, 100, 10, 400)
-  let circleSize = map(bass, 0, 100, 20, 200);
-  fill(232, 180, 37)
-
-  strokeWeight(2);
-  stroke(255)
-  ellipse(canvasWidth / 2, canvasHeight / 2, 5, ellipseLength)
-  ellipse(canvasWidth / 2, canvasHeight / 2, ellipseLength, 5)
-  ellipse(canvasWidth / 2, canvasHeight / 2, circleSize, circleSize);
+  if (firstRun) {
+    img = loadImage('discoball.png') //https://pngimg.com/image/102009
+    firstRun = false
+  }
 
 
 
-  strokeWeight(2);
-  ellipse(canvasWidth / 4, canvasHeight / 4, 5, ellipseLength)
-  ellipse(canvasWidth / 4, canvasHeight / 4, ellipseLength, 5)
-  ellipse(canvasWidth / 4, canvasHeight / 4, circleSize, circleSize);
+  //window
+  let MyPurple = color(67, 41, 128) // purple
+  let MyBlack = color(25, 13, 54) // black
+  let CounterColour = map(counter, 0, 4000, 0, 1) // colour will change from purple to black over time
+  let BlendColour = lerpColor(MyPurple, MyBlack, CounterColour)
 
+  fill(BlendColour)
+  strokeWeight(8)
+  stroke(255) //white
+  rect(windowX, windowY, 400, 250) // window frame
+  line(windowX, windowY - 123, windowX, windowY + 123) //vert window line
+  line(windowX - 200, windowY, windowX + 200, windowY) // horizontal window line
 
-  strokeWeight(2);
-  ellipse(canvasWidth / 1.3, canvasHeight / 1.3, 5, ellipseLength)
-  ellipse(canvasWidth / 1.3, canvasHeight / 1.3, ellipseLength, 5)
-  ellipse(canvasWidth / 1.3, canvasHeight / 1.3, circleSize, circleSize);
-
+  //discoball
+  let discoSize = map(drum, 0, 100, 0.3, 0.36)
+  push()
+  scale(discoSize)
+  image(img, 600, 10);
+  pop()
 }
 
 
-
+//ORIGINAL BARS
 // let bar_spacing = height / 10;
   // let bar_height = width / 12;
   // let bar_pos_x = width / 2;
@@ -67,3 +78,31 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // textAlign(CENTER);
   // textSize(vocal);
   // text(words, width / 2, height / 3);
+
+
+
+
+
+//PULSING GLITTER SPARKLES
+    // let ellipseLength = map(other, 0, 100, 10, 400)
+  // let circleSize = map(bass, 0, 100, 20, 200);
+  // fill(232, 180, 37)
+
+  // strokeWeight(2);
+  // stroke(255)
+  // ellipse(canvasWidth / 2, canvasHeight / 2, 5, ellipseLength)
+  // ellipse(canvasWidth / 2, canvasHeight / 2, ellipseLength, 5)
+  // ellipse(canvasWidth / 2, canvasHeight / 2, circleSize, circleSize);
+
+
+
+  // strokeWeight(2);
+  // ellipse(canvasWidth / 4, canvasHeight / 4, 5, ellipseLength)
+  // ellipse(canvasWidth / 4, canvasHeight / 4, ellipseLength, 5)
+  // ellipse(canvasWidth / 4, canvasHeight / 4, circleSize, circleSize);
+
+
+  // strokeWeight(2);
+  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, 5, ellipseLength)
+  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, ellipseLength, 5)
+  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, circleSize, circleSize);
