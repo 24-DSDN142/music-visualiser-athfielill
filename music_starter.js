@@ -1,7 +1,10 @@
 
 //parameters
-let windowX = 300
-let windowY = 150
+let backgroundX = 300
+let backgroundY = 400
+
+let road1X = 600
+let road1Y = 820
 
 let img;
 let firstRun = true
@@ -9,37 +12,39 @@ let firstRun = true
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(87, 85, 81)
+  background(25)
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
 
   if (firstRun) {
-    img = loadImage('discoball.png') //https://pngimg.com/image/102009
+    img = loadImage('rock.png') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
     firstRun = false
   }
 
-
-
-  //window
+  //Darneking sky
   let MyPurple = color(67, 41, 128) // purple
   let MyBlack = color(25, 13, 54) // black
   let CounterColour = map(counter, 0, 4000, 0, 1) // colour will change from purple to black over time
   let BlendColour = lerpColor(MyPurple, MyBlack, CounterColour)
-
   fill(BlendColour)
-  strokeWeight(8)
+  strokeWeight(0)
   stroke(255) //white
-  rect(windowX, windowY, 400, 250) // window frame
-  line(windowX, windowY - 123, windowX, windowY + 123) //vert window line
-  line(windowX - 200, windowY, windowX + 200, windowY) // horizontal window line
+  rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
-  //discoball
-  let discoSize = map(drum, 0, 100, 0.3, 0.36)
-  push()
-  scale(discoSize)
-  image(img, 600, 10);
-  pop()
+  //road
+  fill(150)
+  ellipse(road1X, road1Y, 700, 300)//road 1 (bottom)
+  ellipse(600, 420, 700, 300)// road 2 (middle)
+  ellipse(600, 150, 500, 200)// road 3 (top)
+
+  fill(180)
+  stroke(255)
+  strokeWeight(0)
+  ellipse(680, 400, 600, 200)//road 2 inside
+  ellipse(650, 140, 400, 130)//road 3 inside
+
+  image(img, 10, 10);
 }
 
 
@@ -106,3 +111,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, 5, ellipseLength)
   // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, ellipseLength, 5)
   // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, circleSize, circleSize);
+
+//discoball
+// let discoSize = map(drum, 0, 100, 0.3, 0.36)
+// push()
+// scale(discoSize)
+// image(img, 600, 10);
+// pop()
+
+// line(windowX, windowY - 123, windowX, windowY + 123) //vert window line
+// line(windowX - 200, windowY, windowX + 200, windowY) // horizontal window line
