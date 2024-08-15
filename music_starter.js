@@ -1,51 +1,95 @@
 
 //parameters
-let backgroundX = 300
-let backgroundY = 400
+let backgroundX = 250
+let backgroundY = 150
 
-let road1X = 600
-let road1Y = 820
 
 let img;
 let firstRun = true
 
-
+let Xmove = 300;
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(25)
+  background(205, 50, 50)
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
 
   if (firstRun) {
-    img = loadImage('rock.png') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
+    img = loadImage('discoball.png') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
     firstRun = false
   }
 
+
   //Darneking sky
-  let MyPurple = color(67, 41, 128) // purple
+  let MyPurple = color(27, 41, 128) // purple
   let MyBlack = color(25, 13, 54) // black
-  let CounterColour = map(counter, 0, 4000, 0, 1) // colour will change from purple to black over time
+  let CounterColour = map(counter, 0, 400, 0, 1) // colour will change from purple to black over time
   let BlendColour = lerpColor(MyPurple, MyBlack, CounterColour)
   fill(BlendColour)
   strokeWeight(0)
-  stroke(255) //white
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
-  //road
-  fill(150)
-  ellipse(road1X, road1Y, 700, 300)//road 1 (bottom)
-  ellipse(600, 420, 700, 300)// road 2 (middle)
-  ellipse(600, 150, 500, 200)// road 3 (top)
 
-  fill(180)
-  stroke(255)
-  strokeWeight(0)
-  ellipse(680, 400, 600, 200)//road 2 inside
-  ellipse(650, 140, 400, 130)//road 3 inside
+  fill(150);
+  strokeWeight(0);
+  rect(Xmove, 250, 1200, 100)//road
 
-  image(img, 10, 10);
+  //white lines
+  fill(255)
+  rect(Xmove - 400, 40, 10)
+  rect(Xmove - 300, 250, 40, 10)
+  rect(Xmove - 200, 250, 40, 10)
+  rect(Xmove - 100, 250, 40, 10)
+  rect(Xmove, 250, 40, 10)
+  rect(Xmove + 100, 250, 40, 10)
+  rect(Xmove + 200, 250, 40, 10)
+  rect(Xmove + 300, 250, 40, 10)
+  rect(Xmove + 400, 250, 40, 10)
+  rect(Xmove + 500, 250, 40, 10)
+
+  if (Xmove < 1) {
+    Xmove = 99
+  }
+  Xmove = Xmove - 2
+
+
+  fill(235, 200, 47)
+  stroke(235, 200, 47)
+  strokeWeight(4)
+  beginShape();
+  vertex(141, 236);
+  bezierVertex(157, 204, 188, 203, 201, 234);
+  bezierVertex(261, 235, 263, 235, 288, 236);
+  bezierVertex(296, 209, 333, 207, 344, 236);
+  bezierVertex(384, 235, 384, 235, 394, 235);
+  bezierVertex(386, 157, 311, 165, 316, 164);
+  bezierVertex(272, 100, 225, 120, 217, 116);
+  bezierVertex(138, 135, 119, 168, 96, 209);
+  bezierVertex(95, 248, 139, 237, 140, 236);
+  endShape();
 }
+  //discoball
+  // let discoSize = map(drum, 0, 100, 0.3, 0.36)
+  // push()
+  // scale(discoSize);
+  // image(img, 600, 10);
+  // pop()
+
+//road
+  // line(100, 100, 300, 100)
+
+  // //road
+  // fill(150)
+  // ellipse(road1X, road1Y, 700, 300)//road 1 (bottom)
+  // ellipse(600, 420, 700, 300)// road 2 (middle)
+  // ellipse(600, 150, 500, 200)// road 3 (top)
+
+  // fill(180)
+  // stroke(255)
+  // strokeWeight(0)
+  // ellipse(680, 400, 600, 200)//road 2 inside
+  // ellipse(650, 140, 400, 130)//road 3 inside
 
 
 //ORIGINAL BARS
@@ -112,12 +156,18 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, ellipseLength, 5)
   // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, circleSize, circleSize);
 
-//discoball
-// let discoSize = map(drum, 0, 100, 0.3, 0.36)
-// push()
-// scale(discoSize)
-// image(img, 600, 10);
-// pop()
+
 
 // line(windowX, windowY - 123, windowX, windowY + 123) //vert window line
 // line(windowX - 200, windowY, windowX + 200, windowY) // horizontal window line
+
+//loop function
+  // let length = 300;
+  // let start = 100;
+  // let end = start + length;
+  // let drumMap = map(vocal, 0, 100, 30, 90)
+  // strokeWeight(5)
+  // for (let i = 1; i <= drumMap; i++) {
+  //   let lineStep = i * 10;
+  //   stroke(255)
+  //   line(start, lineStep, end, lineStep)

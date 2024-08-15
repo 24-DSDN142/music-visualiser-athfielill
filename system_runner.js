@@ -1,5 +1,6 @@
-const canvasWidth = 600;
-const canvasHeight = 800;
+const canvasWidth = 500;
+const canvasHeight = 300;
+const bezierToolDefaultActive = false;
 
 
 let mainCanvas;
@@ -75,6 +76,9 @@ function setup() {
   songButton.mousePressed(switchRunMode);
   songButton.parent('button1Container');
   songButton.elt.disabled = true;
+
+  // Initialise Bezier Helper
+  BezierHelper.useBezierTool(bezierToolDefaultActive);
 
   vol1 = [];
   vol2 = [];
