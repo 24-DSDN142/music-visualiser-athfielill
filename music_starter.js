@@ -13,7 +13,8 @@ let Xmove = 500;
 let roadY = 520
 
 let carX = 20
-let carY = 450
+let boardY = 300
+
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -22,6 +23,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   rectMode(CENTER)
   textSize(24);
 
+  let carY = map(drum, 0, 100, 445, 455)
+  let boardY = map(bass, 0, 100, 285, 320)
+  let wheelSize = map(other, 0, 100, 60, 80)
+
+
   if (firstRun) {
     img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
     firstRun = false
@@ -29,18 +35,18 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 
   //Darneking sky
-  let MyPurple = color(27, 41, 128) // purple
+  let MyPurple = color(128, 183, 232) // purple
   let MyBlack = color(25, 13, 54) // black
-  let CounterColour = map(counter, 0, 400, 0, 1) // colour will change from purple to black over time
+  let CounterColour = map(counter, 0, 1000, 0, 1) // colour will change from purple to black over time
   let BlendColour = lerpColor(MyPurple, MyBlack, CounterColour)
   fill(BlendColour)
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
-
+  //road
   fill(150);
   strokeWeight(0);
-  rect(Xmove, roadY, 2000, 160)//road
+  rect(Xmove, roadY, 2000, 160)
 
   //white lines
   fill(255)
@@ -60,17 +66,18 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   rect(Xmove + 800, roadY, 40, 10)
   rect(Xmove + 900, roadY, 40, 10)
 
+  //makes the road move and reset when off the page
   if (Xmove < 1) {
     Xmove = 500
   }
   Xmove = Xmove - 2
 
-
-  fill(100)
-  strokeWeight(5)
+  //wheel
+  fill(171, 183, 194)
+  strokeWeight(10)
   stroke(0)
-  ellipse(375, 450, 80, 80)
-  ellipse(675, 450, 80, 80)
+  ellipse(375, 450, wheelSize, wheelSize) // back wheel
+  ellipse(675, 450, wheelSize, wheelSize) // front wheel
 
 
   fill(235, 200, 47) // yellow
@@ -96,15 +103,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   stroke(237, 230, 206)
   // surfboard
   beginShape();
-  vertex(323, 327);
-  bezierVertex(432, 289, 560, 292, 636, 314);
-  bezierVertex(536, 308, 464, 300, 323, 327);
+  vertex(323, boardY + 27);
+  bezierVertex(432, boardY - 11, 560, boardY - 8, 636, boardY + 14);
+  bezierVertex(536, boardY + 8, 464, boardY, 323, boardY + 27);
   endShape();
   // surfboard fin
   beginShape();
-  vertex(572, 302);
-  bezierVertex(574, 284, 585, 277, 607, 276);
-  bezierVertex(592, 286, 590, 293, 596, 303);
+  vertex(572, boardY + 2);
+  bezierVertex(574, boardY - 16, 585, boardY - 23, 607, boardY - 24);
+  bezierVertex(592, boardY - 14, 590, boardY - 7, 596, boardY + 3);
   endShape();
 
   // image(img, 140, 50);
