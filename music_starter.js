@@ -7,8 +7,14 @@ let backgroundY = 300
 let img;
 let firstRun = true
 
+
+
 let Xmove = 500;
 let roadY = 520
+
+let carX = 20
+let carY = 450
+
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(205, 50, 50)
@@ -60,28 +66,28 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   Xmove = Xmove - 2
 
 
-
-
   fill(100)
   strokeWeight(5)
   stroke(0)
   ellipse(375, 450, 80, 80)
+  ellipse(675, 450, 80, 80)
+
 
   fill(235, 200, 47) // yellow
   stroke(235, 200, 47)
   strokeWeight(4)
   beginShape(); // Shape or car
-  vertex(420, 447);
-  bezierVertex(425, 462, 424, 465, 456, 466);
-  bezierVertex(496, 464, 540, 464, 604, 466);
-  bezierVertex(621, 465, 624, 461, 632, 441);
-  bezierVertex(652, 396, 700, 392, 724, 448);
-  bezierVertex(732, 467, 745, 467, 740, 444);
-  bezierVertex(733, 405, 732, 375, 599, 360);
-  bezierVertex(596, 364, 573, 322, 570, 322);
-  bezierVertex(494, 302, 376, 288, 300, 434);
-  bezierVertex(289, 450, 315, 469, 331, 438);
-  bezierVertex(361, 393, 398, 397, 419, 448);
+  vertex(420, carY - 3);
+  bezierVertex(425, carY + 12, 424, carY + 15, 456, carY + 16);
+  bezierVertex(496, carY + 14, 540, carY + 14, 604, carY + 16);
+  bezierVertex(621, carY + 15, 624, carY + 11, 632, carY - 9);
+  bezierVertex(652, carY - 54, 700, carY - 58, 724, carY - 2);
+  bezierVertex(732, carY + 17, 745, carY + 17, 740, carY - 6);
+  bezierVertex(733, carY - 45, 732, carY - 75, 599, carY - 90);
+  bezierVertex(596, carY - 86, 573, carY - 128, 570, carY - 128);
+  bezierVertex(494, carY - 148, 376, carY - 162, 300, carY - 16);
+  bezierVertex(289, carY, 315, carY + 19, 331, carY - 12);
+  bezierVertex(361, carY - 57, 398, carY - 53, 419, carY - 2);
   endShape();
 
 
