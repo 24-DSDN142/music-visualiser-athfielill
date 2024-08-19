@@ -1,13 +1,14 @@
 
 //parameters
-let backgroundX = 250
-let backgroundY = 150
+let backgroundX = 500
+let backgroundY = 300
 
 
 let img;
 let firstRun = true
 
-let Xmove = 300;
+let Xmove = 500;
+let roadY = 520
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(205, 50, 50)
@@ -16,7 +17,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   textSize(24);
 
   if (firstRun) {
-    img = loadImage('discoball.png') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
+    img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
     firstRun = false
   }
 
@@ -33,42 +34,78 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   fill(150);
   strokeWeight(0);
-  rect(Xmove, 250, 1200, 100)//road
+  rect(Xmove, roadY, 2000, 160)//road
 
   //white lines
   fill(255)
-  rect(Xmove - 400, 40, 10)
-  rect(Xmove - 300, 250, 40, 10)
-  rect(Xmove - 200, 250, 40, 10)
-  rect(Xmove - 100, 250, 40, 10)
-  rect(Xmove, 250, 40, 10)
-  rect(Xmove + 100, 250, 40, 10)
-  rect(Xmove + 200, 250, 40, 10)
-  rect(Xmove + 300, 250, 40, 10)
-  rect(Xmove + 400, 250, 40, 10)
-  rect(Xmove + 500, 250, 40, 10)
+  rect(Xmove - 500, roadY, 40, 10)
+  rect(Xmove - 400, roadY, 40, 10)
+  rect(Xmove - 300, roadY, 40, 10)
+  rect(Xmove - 200, roadY, 40, 10)
+  rect(Xmove - 100, roadY, 40, 10)
+  rect(Xmove, roadY, 40, 10)
+  rect(Xmove + 100, roadY, 40, 10)
+  rect(Xmove + 200, roadY, 40, 10)
+  rect(Xmove + 300, roadY, 40, 10)
+  rect(Xmove + 400, roadY, 40, 10)
+  rect(Xmove + 500, roadY, 40, 10)
+  rect(Xmove + 600, roadY, 40, 10)
+  rect(Xmove + 700, roadY, 40, 10)
+  rect(Xmove + 800, roadY, 40, 10)
+  rect(Xmove + 900, roadY, 40, 10)
 
   if (Xmove < 1) {
-    Xmove = 99
+    Xmove = 500
   }
   Xmove = Xmove - 2
 
 
-  fill(235, 200, 47)
+
+
+  fill(100)
+  strokeWeight(5)
+  stroke(0)
+  ellipse(375, 450, 80, 80)
+
+  fill(235, 200, 47) // yellow
   stroke(235, 200, 47)
   strokeWeight(4)
-  beginShape();
-  vertex(141, 236);
-  bezierVertex(157, 204, 188, 203, 201, 234);
-  bezierVertex(261, 235, 263, 235, 288, 236);
-  bezierVertex(296, 209, 333, 207, 344, 236);
-  bezierVertex(384, 235, 384, 235, 394, 235);
-  bezierVertex(386, 157, 311, 165, 316, 164);
-  bezierVertex(272, 100, 225, 120, 217, 116);
-  bezierVertex(138, 135, 119, 168, 96, 209);
-  bezierVertex(95, 248, 139, 237, 140, 236);
+  beginShape(); // Shape or car
+  vertex(420, 447);
+  bezierVertex(425, 462, 424, 465, 456, 466);
+  bezierVertex(496, 464, 540, 464, 604, 466);
+  bezierVertex(621, 465, 624, 461, 632, 441);
+  bezierVertex(652, 396, 700, 392, 724, 448);
+  bezierVertex(732, 467, 745, 467, 740, 444);
+  bezierVertex(733, 405, 732, 375, 599, 360);
+  bezierVertex(596, 364, 573, 322, 570, 322);
+  bezierVertex(494, 302, 376, 288, 300, 434);
+  bezierVertex(289, 450, 315, 469, 331, 438);
+  bezierVertex(361, 393, 398, 397, 419, 448);
   endShape();
+
+
+
+  fill(237, 230, 206)// cream colour
+  stroke(237, 230, 206)
+  // surfboard
+  beginShape();
+  vertex(323, 327);
+  bezierVertex(432, 289, 560, 292, 636, 314);
+  bezierVertex(536, 308, 464, 300, 323, 327);
+  endShape();
+  // surfboard fin
+  beginShape();
+  vertex(572, 302);
+  bezierVertex(574, 284, 585, 277, 607, 276);
+  bezierVertex(592, 286, 590, 293, 596, 303);
+  endShape();
+
+  // image(img, 140, 50);
 }
+
+
+
   //discoball
   // let discoSize = map(drum, 0, 100, 0.3, 0.36)
   // push()
