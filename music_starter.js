@@ -11,7 +11,7 @@ let Xmove = 500;
 let roadY = 520;
 
 let carX = 20
-let carY = 300
+let carY = 450
 let boardY = 300
 let titleX = 600
 
@@ -120,10 +120,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   fill(245)
   beginShape();
   vertex(557, 322);
-  bezierVertex(559, 321, 581, 357, 579, 358);
-  bezierVertex(564, 362, 433, 352, 426, 353);
-  bezierVertex(427, 352, 445, 330, 456, 319);
-  bezierVertex(482, 308, 541, 315, 555, 322);
+  bezierVertex(559, carY - 129, 581, carY - 93, 579, carY - 92);
+  bezierVertex(564, carY - 88, 433, carY - 98, 426, carY - 97);
+  bezierVertex(427, carY - 98, 445, carY - 120, 456, carY - 135);
+  bezierVertex(482, carY - 142, 541, carY - 135, 555, carY - 130);
   endShape();
 
   //image(img, 140, 50);
