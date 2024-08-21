@@ -3,17 +3,17 @@
 let backgroundX = 500
 let backgroundY = 300
 
-
 let img;
+let title;
 let firstRun = true
 
-
-
 let Xmove = 500;
-let roadY = 520
+let roadY = 520;
 
 let carX = 20
+let carY = 300
 let boardY = 300
+let titleX = 600
 
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
@@ -28,10 +28,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let wheelSize = map(other, 0, 100, 60, 80)
 
 
+
   if (firstRun) {
     img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
+    title = loadImage('upside down.png') //i made this on adobe illustrator
     firstRun = false
   }
+
 
 
   //Darneking sky
@@ -114,7 +117,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(592, boardY - 14, 590, boardY - 7, 596, boardY + 3);
   endShape();
 
-  // image(img, 140, 50);
+  fill(245)
+  beginShape();
+  vertex(557, 322);
+  bezierVertex(559, 321, 581, 357, 579, 358);
+  bezierVertex(564, 362, 433, 352, 426, 353);
+  bezierVertex(427, 352, 445, 330, 456, 319);
+  bezierVertex(482, 308, 541, 315, 555, 322);
+  endShape();
+
+  //image(img, 140, 50);
+  image(title, titleX, 50);
+
+
+  titleX = titleX - 1
 }
 
 
