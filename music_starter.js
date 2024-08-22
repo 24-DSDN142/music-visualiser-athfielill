@@ -86,7 +86,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   fill(235, 200, 47) // yellow
   stroke(235, 200, 47)
   strokeWeight(4)
-  beginShape(); // Shape or car
+  beginShape(); // Shape of car
   vertex(420, carY - 3);
   bezierVertex(425, carY + 12, 424, carY + 15, 456, carY + 16);
   bezierVertex(496, carY + 14, 540, carY + 14, 604, carY + 16);
@@ -100,11 +100,21 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(361, carY - 57, 398, carY - 53, 419, carY - 2);
   endShape();
 
+  //car window
+  fill(183, 223, 235)
+  strokeWeight(0)
+  beginShape();
+  vertex(557, 322);
+  bezierVertex(559, carY - 129, 581, carY - 93, 579, carY - 92);
+  bezierVertex(564, carY - 88, 433, carY - 98, 426, carY - 97);
+  bezierVertex(427, carY - 98, 445, carY - 120, 456, carY - 135);
+  bezierVertex(482, carY - 142, 541, carY - 135, 555, carY - 130);
+  endShape();
 
-
+  // surfboard
   fill(237, 230, 206)// cream colour
   stroke(237, 230, 206)
-  // surfboard
+  strokeWeight(4);
   beginShape();
   vertex(323, boardY + 27);
   bezierVertex(432, boardY - 11, 560, boardY - 8, 636, boardY + 14);
@@ -117,19 +127,22 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(592, boardY - 14, 590, boardY - 7, 596, boardY + 3);
   endShape();
 
-  fill(245)
+
+
+  //headlights
+  strokeWeight(0)
+  fill(237, 230, 206, 70);
   beginShape();
-  vertex(557, 322);
-  bezierVertex(559, carY - 129, 581, carY - 93, 579, carY - 92);
-  bezierVertex(564, carY - 88, 433, carY - 98, 426, carY - 97);
-  bezierVertex(427, carY - 98, 445, carY - 120, 456, carY - 135);
-  bezierVertex(482, carY - 142, 541, carY - 135, 555, carY - 130);
+  vertex(727, 401);
+  bezierVertex(725, 396, 939, 363, 1009, 352);
+  bezierVertex(1064, 379, 1060, 399, 1023, 518);
+  bezierVertex(992, 502, 725, 406, 727, 406);
+  bezierVertex(726, 397, 726, 397, 726, 397);
   endShape();
 
   //image(img, 140, 50);
+  //text saying 'upside down' slides across the page once
   image(title, titleX, 50);
-
-
   titleX = titleX - 1
 }
 
