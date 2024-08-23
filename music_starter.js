@@ -32,23 +32,27 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if (firstRun) {
     img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
     title = loadImage('upside down.png') //i made this on adobe illustrator
+    mountains = loadImage('mountains.png') //i made this on adobe illustrator
     firstRun = false
   }
 
 
 
   //Darneking sky
-  let MyPurple = color(128, 183, 232) // purple
-  let MyBlack = color(25, 13, 54) // black
+  let MyBlue = color(128, 183, 232) // light blue
+  let MyNavy = color(43, 54, 94) // Navy blue
   let CounterColour = map(counter, 0, 1000, 0, 1) // colour will change from purple to black over time
-  let BlendColour = lerpColor(MyPurple, MyBlack, CounterColour)
+  let BlendColour = lerpColor(MyBlue, MyNavy, CounterColour)
   fill(BlendColour)
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
+
+
   //road
   fill(150);
   strokeWeight(0);
+
   rect(Xmove, roadY, 2000, 160)
 
   //white lines
