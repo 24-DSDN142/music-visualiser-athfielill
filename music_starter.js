@@ -15,6 +15,8 @@ let carY = 450
 let boardY = 300
 let titleX = 600
 
+let mountainX = 1500
+
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -46,6 +48,16 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   fill(BlendColour)
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
+
+
+  //mountain background
+
+  image(mountains, mountainX, 0);
+
+  if (mountainX < -1000) {
+    mountainX = 1000
+  }
+  mountainX = mountainX - 0.5
 
 
 
@@ -148,6 +160,12 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   //text saying 'upside down' slides across the page once
   image(title, titleX, 50);
   titleX = titleX - 1
+
+
+
+
+
+
 }
 
 
