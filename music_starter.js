@@ -2,21 +2,19 @@
 //parameters
 let backgroundX = 500
 let backgroundY = 300
-
 let img;
 let title;
 let firstRun = true
-
 let Xmove = 500;
 let roadY = 520;
-
 let carX = 20
 let carY = 450
 let boardY = 300
 let titleX = 600
-
 let mountainX = 1500
-
+let XstarArray = [20, 480, 90, 190, 300, 530, 700, 880, 890, 700, 340, 210, 650, 940, 60, 980];
+let YstarArray = [20, 230, 310, 100, 210, 30, 280, 120, 340, 60, 50, 280, 150, 30, 170, 260]
+let starSize = 2
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -28,8 +26,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let carY = map(drum, 0, 100, 445, 455)
   let boardY = map(bass, 0, 100, 285, 320)
   let wheelSize = map(other, 0, 100, 60, 80)
-
-
+  let starSize = map(vocal, 0, 100, 1, 5)
 
   if (firstRun) {
     img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
@@ -37,8 +34,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     mountains = loadImage('mountains.png') //i made this on adobe illustrator
     firstRun = false
   }
-
-
 
   //Darneking sky
   let MyBlue = color(128, 183, 232) // light blue
@@ -49,9 +44,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
+  //stars
+  fill(194, 234, 240)
+  ellipse(XstarArray[0], YstarArray[0], starSize)
+  ellipse(XstarArray[1], YstarArray[1], starSize)
+  ellipse(XstarArray[2], YstarArray[2], starSize)
+  ellipse(XstarArray[3], YstarArray[3], starSize)
+  ellipse(XstarArray[4], YstarArray[4], starSize)
+  ellipse(XstarArray[5], YstarArray[5], starSize)
+  ellipse(XstarArray[6], YstarArray[6], starSize)
+  ellipse(XstarArray[7], YstarArray[7], starSize)
+  ellipse(XstarArray[8], YstarArray[8], starSize)
+  ellipse(XstarArray[9], YstarArray[9], starSize)
+  ellipse(XstarArray[10], YstarArray[10], starSize)
+  ellipse(XstarArray[11], YstarArray[11], starSize)
+  ellipse(XstarArray[12], YstarArray[12], starSize)
+  ellipse(XstarArray[13], YstarArray[13], starSize)
+  ellipse(XstarArray[14], YstarArray[14], starSize)
+  ellipse(XstarArray[15], YstarArray[15], starSize)
 
   //mountain background
-
   image(mountains, mountainX, 0);
 
   if (mountainX < -1000) {
@@ -160,10 +172,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   //text saying 'upside down' slides across the page once
   image(title, titleX, 50);
   titleX = titleX - 1
-
-
-
-
 
 
 }
