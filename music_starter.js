@@ -15,6 +15,7 @@ let mountainX = 1500
 let XstarArray = [20, 480, 90, 190, 300, 530, 700, 880, 890, 700, 340, 210, 650, 940, 60, 980];
 let YstarArray = [20, 230, 310, 100, 210, 30, 280, 120, 340, 60, 50, 280, 150, 30, 170, 260]
 let starSize = 2
+let treeX = 3000
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -29,9 +30,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let starSize = map(vocal, 0, 100, 1, 5)
 
   if (firstRun) {
-    img = loadImage('yellow car.jpg') //https://www.vecteezy.com/free-png/stone>Stone PNGs by Vecteezy
+
     title = loadImage('upside down.png') //i made this on adobe illustrator
     mountains = loadImage('mountains.png') //i made this on adobe illustrator
+    trees = loadImage('trees.png') //i made this on adobe illustrator
     firstRun = false
   }
 
@@ -65,12 +67,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   //mountain background
   image(mountains, mountainX, 0);
-
-  if (mountainX < -1000) {
-    mountainX = 1000
-  }
   mountainX = mountainX - 0.5
 
+
+  // tree background
+  image(trees, treeX, 200);
+  if (treeX < -1000) {
+    treeX = 1000
+  }
+  treeX = treeX - 0.5
 
 
   //road
