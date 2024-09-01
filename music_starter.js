@@ -27,7 +27,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let carY = map(drum, 0, 100, 445, 455)
   let boardY = map(bass, 0, 100, 285, 320)
   let wheelSize = map(other, 0, 100, 60, 80)
-  let starSize = map(vocal, 0, 100, 1, 5)
+  let starSize = map(drum, 0, 100, 1, 5)
 
   if (firstRun) {
 
@@ -66,22 +66,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   ellipse(XstarArray[15], YstarArray[15], starSize)
 
   //mountain background
+
+
+
   image(mountains, mountainX, 0);
   mountainX = mountainX - 0.5
 
 
   // tree background
   image(trees, treeX, 200);
-  if (treeX < -1000) {
-    treeX = 1000
-  }
   treeX = treeX - 0.5
-
 
   //road
   fill(150);
   strokeWeight(0);
-
   rect(Xmove, roadY, 2000, 160)
 
   //white lines
@@ -173,8 +171,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(726, 397, 726, 397, 726, 397);
   endShape();
 
-  //image(img, 140, 50);
+
   //text saying 'upside down' slides across the page once
+  if (counter < 1) {
+    titleX = 1000
+  }
   image(title, titleX, 50);
   titleX = titleX - 1
 
