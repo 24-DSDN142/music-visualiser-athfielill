@@ -16,7 +16,14 @@ let XstarArray = [20, 480, 90, 190, 300, 530, 700, 880, 890, 700, 340, 210, 650,
 let YstarArray = [20, 230, 310, 100, 210, 30, 280, 120, 340, 60, 50, 280, 150, 30, 170, 260]
 let starSize = 2
 let treeX = 3000
+let cloudFrontX = 5500
+let cloudBackX = 4000
+let length = 20;
+let start = 420;
+let end = start + length;
 
+
+let starXmove = 10
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(205, 50, 50)
@@ -28,12 +35,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let boardY = map(bass, 0, 100, 285, 320)
   let wheelSize = map(other, 0, 100, 60, 80)
   let starSize = map(drum, 0, 100, 1, 5)
+  let vocalMap = map(vocal, 0, 100, 3, 13)
 
   if (firstRun) {
 
     title = loadImage('upside down.png') //i made this on adobe illustrator
     mountains = loadImage('mountains.png') //i made this on adobe illustrator
     trees = loadImage('trees.png') //i made this on adobe illustrator
+    cloudFront = loadImage('cloudFront.png')
+    cloudBack = loadImage('cloudBack.png')
     firstRun = false
   }
 
@@ -66,9 +76,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   ellipse(XstarArray[15], YstarArray[15], starSize)
 
   //mountain background
-
-
-
   image(mountains, mountainX, 0);
   mountainX = mountainX - 0.5
 
@@ -76,6 +83,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // tree background
   image(trees, treeX, 200);
   treeX = treeX - 0.5
+
+
+  // cloud back
+  image(cloudBack, cloudBackX, 10);
+  cloudBackX = cloudBackX - 0.4
+
+  // cloud front
+  image(cloudFront, cloudFrontX, 10);
+  cloudFrontX = cloudFrontX - 0.6
 
   //road
   fill(150);
@@ -113,7 +129,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   ellipse(375, 450, wheelSize, wheelSize) // back wheel
   ellipse(675, 450, wheelSize, wheelSize) // front wheel
 
+  //exhaust
+  for (let i = 1; i <= vocalMap; i++) {
+    let lineStep = i * -4;
+    stroke(237, 237, 237, 90);
+    strokeWeight(2);
+    line(lineStep + 310, start, lineStep + 310, end)
+  }
 
+  //car
   fill(235, 200, 47) // yellow
   stroke(235, 200, 47)
   strokeWeight(4)
@@ -130,6 +154,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(289, carY, 315, carY + 19, 331, carY - 12);
   bezierVertex(361, carY - 57, 398, carY - 53, 419, carY - 2);
   endShape();
+
+
 
   //car window
   fill(183, 223, 235)
