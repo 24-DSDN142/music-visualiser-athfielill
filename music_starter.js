@@ -21,6 +21,8 @@ let cloudBackX = 4000
 let length = 20;
 let start = 420;
 let end = start + length;
+let flowerX = 4000
+let flower = []
 
 
 let starXmove = 10
@@ -34,16 +36,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let carY = map(drum, 0, 100, 445, 455)
   let boardY = map(bass, 0, 100, 285, 320)
   let wheelSize = map(other, 0, 100, 60, 80)
-  let starSize = map(drum, 0, 100, 1, 5)
+  let starSize = map(drum, 0, 100, 1, 10)
   let vocalMap = map(vocal, 0, 100, 3, 13)
+  let flowerMove = int(map(bass, 0, 100, 0, 2))
 
   if (firstRun) {
-
     title = loadImage('upside down.png') //i made this on adobe illustrator
     mountains = loadImage('mountains.png') //i made this on adobe illustrator
     trees = loadImage('trees.png') //i made this on adobe illustrator
-    cloudFront = loadImage('cloudFront.png')
-    cloudBack = loadImage('cloudBack.png')
+    cloudFront = loadImage('cloudFront.png')//i made this on adobe illustrator
+    cloudBack = loadImage('cloudBack.png')//i made this on adobe illustrator
+    flower.push(loadImage('flower1.png'));
+    flower.push(loadImage('flower3.png'));
+    flower.push(loadImage('flower2.png'));
+
     firstRun = false
   }
 
@@ -55,6 +61,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   fill(BlendColour)
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
+
+
 
   //stars
   fill(194, 234, 240)
@@ -92,6 +100,14 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // cloud front
   image(cloudFront, cloudFrontX, 10);
   cloudFrontX = cloudFrontX - 0.6
+
+
+  //flower
+  console.log(flowerMove);
+  push();
+  image(flower[flowerMove], flowerX, 360)
+  pop();
+  flowerX = flowerX - 1
 
   //road
   fill(150);
@@ -131,9 +147,9 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   //exhaust
   for (let i = 1; i <= vocalMap; i++) {
-    let lineStep = i * -4;
-    stroke(237, 237, 237, 90);
-    strokeWeight(2);
+    let lineStep = i * -5;
+    stroke(255, 100);
+    strokeWeight(3);
     line(lineStep + 310, start, lineStep + 310, end)
   }
 
@@ -204,6 +220,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   }
   image(title, titleX, 50);
   titleX = titleX - 1
+
 
 
 }
