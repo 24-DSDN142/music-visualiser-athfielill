@@ -24,6 +24,8 @@ let start = 420;
 let end = start + length;
 let flowerX = 4000
 let flower = []
+let snowY = 200
+
 
 
 let starXmove = 10
@@ -41,10 +43,12 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let vocalMap = map(vocal, 0, 100, 3, 13)
   let flowerMove = int(map(bass, 0, 100, 0, 2))
   let treeMove = int(map(bass, 0, 100, 0, 2))
+  let snowY = map(vocal, 0, 100, 120, 110)
 
   if (firstRun) {
     title = loadImage('upside down.png') //i made this on adobe illustrator
-    mountains = loadImage('mountains.png') //i made this on adobe illustrator
+    mountain = loadImage('mountain.png') //i made this on adobe illustrator
+    snow = loadImage('mountainSnow.png')
     tree.push(loadImage('tree.png')) //i made this on adobe illustrator
     tree.push(loadImage('tree2.png'))
     tree.push(loadImage('tree3.png'))
@@ -89,8 +93,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   ellipse(XstarArray[15], YstarArray[15], starSize)
 
   //mountain background
-  image(mountains, mountainX, 0);
+  image(mountain, mountainX, 14);
+  image(snow, mountainX + 145, snowY)
   mountainX = mountainX - 0.5
+
 
 
   // tree background
