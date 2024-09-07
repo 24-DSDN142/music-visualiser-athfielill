@@ -16,6 +16,7 @@ let XstarArray = [20, 480, 90, 190, 300, 530, 700, 880, 890, 700, 340, 210, 650,
 let YstarArray = [20, 230, 310, 100, 210, 30, 280, 120, 340, 60, 50, 280, 150, 30, 170, 260]
 let starSize = 2
 let treeX = 3000
+let tree = []
 let cloudFrontX = 5500
 let cloudBackX = 4000
 let length = 20;
@@ -39,16 +40,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let starSize = map(drum, 0, 100, 1, 10)
   let vocalMap = map(vocal, 0, 100, 3, 13)
   let flowerMove = int(map(bass, 0, 100, 0, 2))
+  let treeMove = int(map(bass, 0, 100, 0, 2))
 
   if (firstRun) {
     title = loadImage('upside down.png') //i made this on adobe illustrator
     mountains = loadImage('mountains.png') //i made this on adobe illustrator
-    trees = loadImage('trees.png') //i made this on adobe illustrator
+    tree.push(loadImage('tree.png')) //i made this on adobe illustrator
+    tree.push(loadImage('tree2.png'))
+    tree.push(loadImage('tree3.png'))
     cloudFront = loadImage('cloudFront.png')//i made this on adobe illustrator
     cloudBack = loadImage('cloudBack.png')//i made this on adobe illustrator
     flower.push(loadImage('flower1.png'));
     flower.push(loadImage('flower3.png'));
     flower.push(loadImage('flower2.png'));
+
 
     firstRun = false
   }
@@ -89,9 +94,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 
   // tree background
-  image(trees, treeX, 200);
-  treeX = treeX - 0.5
+  // image(tree[treeX], treeX, 200);
 
+  console.log(treeMove);
+  push();
+  image(tree[treeMove], treeX, 200)
+  pop();
+  treeX = treeX - 0.5
 
   // cloud back
   image(cloudBack, cloudBackX, 10);
@@ -107,6 +116,9 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   push();
   image(flower[flowerMove], flowerX, 360)
   pop();
+  if (flowerX < -2000) { //flower will repeat when off page
+    flowerX = 2000
+  }
   flowerX = flowerX - 1
 
   //road
