@@ -25,10 +25,8 @@ let end = start + length;
 let flowerX = 4000
 let flower = []
 let snowY = 200
+let moonSize = 1
 
-
-
-let starXmove = 10
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(205, 50, 50)
@@ -42,23 +40,24 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let starSize = map(drum, 0, 100, 1, 10)
   let vocalMap = map(vocal, 0, 100, 3, 13)
   let flowerMove = int(map(bass, 0, 100, 0, 2))
-  let treeMove = int(map(bass, 0, 100, 0, 2))
-  let snowY = map(vocal, 0, 100, 120, 110)
+  let treeMove = int(map(other, 0, 100, 0, 2))
+  let snowY = map(vocal, 0, 100, 120, 105)
 
+  //load in images
   if (firstRun) {
-    title = loadImage('upside down.png') //i made this on adobe illustrator
-    mountain = loadImage('mountain.png') //i made this on adobe illustrator
+    //all images were drawn by me in adobe illustrator
+    title = loadImage('upside down.png')
+    mountain = loadImage('mountain.png')
     snow = loadImage('mountainSnow.png')
-    tree.push(loadImage('tree.png')) //i made this on adobe illustrator
+    tree.push(loadImage('tree.png'))
     tree.push(loadImage('tree2.png'))
     tree.push(loadImage('tree3.png'))
-    cloudFront = loadImage('cloudFront.png')//i made this on adobe illustrator
-    cloudBack = loadImage('cloudBack.png')//i made this on adobe illustrator
+    cloudFront = loadImage('cloudFront.png')
+    cloudBack = loadImage('cloudBack.png')
     flower.push(loadImage('flower1.png'));
     flower.push(loadImage('flower3.png'));
     flower.push(loadImage('flower2.png'));
-
-
+    moon = loadImage('moon.png')
     firstRun = false
   }
 
@@ -71,9 +70,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   strokeWeight(0)
   rect(backgroundX, backgroundY, canvasWidth, canvasHeight) // window frame
 
+  //stars and moon background
+  image(moon, 10, 10)
 
-
-  //stars
+  //white dots that are far away stars
   fill(194, 234, 240)
   ellipse(XstarArray[0], YstarArray[0], starSize)
   ellipse(XstarArray[1], YstarArray[1], starSize)
@@ -94,14 +94,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   //mountain background
   image(mountain, mountainX, 14);
+  //snow
   image(snow, mountainX + 145, snowY)
-  mountainX = mountainX - 0.5
-
-
+  mountainX = mountainX - 0.6
 
   // tree background
-  // image(tree[treeX], treeX, 200);
-
   console.log(treeMove);
   push();
   image(tree[treeMove], treeX, 200)
@@ -115,7 +112,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // cloud front
   image(cloudFront, cloudFrontX, 10);
   cloudFrontX = cloudFrontX - 0.6
-
 
   //flower
   console.log(flowerMove);
@@ -132,7 +128,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   strokeWeight(0);
   rect(Xmove, roadY, 2000, 160)
 
-  //white lines
+  //white lines in the middle of the road
   fill(255)
   rect(Xmove - 500, roadY, 40, 10)
   rect(Xmove - 400, roadY, 40, 10)
@@ -189,8 +185,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(361, carY - 57, 398, carY - 53, 419, carY - 2);
   endShape();
 
-
-
   //car window
   fill(183, 223, 235)
   strokeWeight(0)
@@ -211,14 +205,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(432, boardY - 11, 560, boardY - 8, 636, boardY + 14);
   bezierVertex(536, boardY + 8, 464, boardY, 323, boardY + 27);
   endShape();
+
   // surfboard fin
   beginShape();
   vertex(572, boardY + 2);
   bezierVertex(574, boardY - 16, 585, boardY - 23, 607, boardY - 24);
   bezierVertex(592, boardY - 14, 590, boardY - 7, 596, boardY + 3);
   endShape();
-
-
 
   //headlights
   strokeWeight(0)
@@ -230,7 +223,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   bezierVertex(992, 502, 725, 406, 727, 406);
   bezierVertex(726, 397, 726, 397, 726, 397);
   endShape();
-
 
   //text saying 'upside down' slides across the page once
   if (counter < 1) {
