@@ -1,31 +1,31 @@
 
 //parameters
-let backgroundX = 500
-let backgroundY = 300
+let backgroundX = 500 //background x
+let backgroundY = 300 //background y
 let img;
 let title;
 let firstRun = true
-let Xmove = 500;
-let roadY = 520;
-let carX = 20
-let carY = 450
-let boardY = 300
-let titleX = 600
-let mountainX = 1500
+let Xmove = 500; //road x coordinate
+let roadY = 520; //road y coordinate
+let carX = 20 //car X coordinate
+let carY = 450 //car Y coordinate
+let boardY = 300 //surfboard y cordinate
+let titleX = 600 //'Upside Down' title Y coordinate
+let mountainX = 1500 // mountain X coordinate
 let XstarArray = [20, 480, 90, 190, 300, 530, 700, 880, 890, 700, 340, 210, 650, 940, 60, 980];
 let YstarArray = [20, 230, 310, 100, 210, 30, 280, 120, 340, 60, 50, 280, 150, 30, 170, 260]
-let starSize = 2
-let treeX = 3000
+let starSize = 2 //background star ellipse size
+let treeX = 3000 //pine tree x coords
 let tree = []
-let cloudFrontX = 5500
+let cloudFrontX = 5500 //clouds X coords
 let cloudBackX = 4000
-let length = 20;
+let length = 20; //car exhaust lines
 let start = 420;
 let end = start + length;
-let flowerX = 4000
+let flowerX = 4000 //flower x coords
 let flower = []
-let snowY = 200
-let moonSize = 1
+let snowY = 200 //snow Y coords
+let moonSize = 1 //Moon and star size
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -34,14 +34,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   rectMode(CENTER)
   textSize(24);
 
-  let carY = map(drum, 0, 100, 445, 455)
-  let boardY = map(bass, 0, 100, 285, 320)
-  let wheelSize = map(other, 0, 100, 60, 80)
-  let starSize = map(drum, 0, 100, 1, 10)
-  let vocalMap = map(vocal, 0, 100, 3, 13)
-  let flowerMove = int(map(bass, 0, 100, 0, 2))
-  let treeMove = int(map(other, 0, 100, 0, 2))
-  let snowY = map(vocal, 0, 100, 120, 105)
+  //maps 
+  let carY = map(drum, 0, 100, 445, 455) // controls car bouncing up and down
+  let boardY = map(bass, 0, 100, 285, 320) // controls surfboard bouncing
+  let wheelSize = map(other, 0, 100, 60, 80)// wheel size
+  let starSize = map(drum, 0, 100, 1, 10) // stars pulsing
+  let vocalMap = map(vocal, 0, 100, 3, 13) //exhaust from car
+  let flowerMove = int(map(bass, 0, 100, 0, 2)) // controls which flower image is displayed
+  let treeMove = int(map(other, 0, 100, 0, 2)) // controls which tree image is displayed
+  let snowY = map(vocal, 0, 100, 120, 105) //snow bouncing to music
 
   //load in images
   if (firstRun) {
@@ -49,15 +50,15 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     title = loadImage('upside down.png')
     mountain = loadImage('mountain.png')
     snow = loadImage('mountainSnow.png')
+    moon = loadImage('moon.png')
+    cloudFront = loadImage('cloudFront.png')
+    cloudBack = loadImage('cloudBack.png')
     tree.push(loadImage('tree.png'))
     tree.push(loadImage('tree2.png'))
     tree.push(loadImage('tree3.png'))
-    cloudFront = loadImage('cloudFront.png')
-    cloudBack = loadImage('cloudBack.png')
     flower.push(loadImage('flower1.png'));
     flower.push(loadImage('flower3.png'));
     flower.push(loadImage('flower2.png'));
-    moon = loadImage('moon.png')
     firstRun = false
   }
 
@@ -98,20 +99,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   image(snow, mountainX + 145, snowY)
   mountainX = mountainX - 0.6
 
-  // tree background
+  // pine tree background
   console.log(treeMove);
   push();
-  image(tree[treeMove], treeX, 200)
+  image(tree[treeMove], treeX, 200) // which image in array is displayed depends on volume channel
   pop();
-  treeX = treeX - 0.5
+  treeX = treeX - 0.5 // trees move to the left
 
   // cloud back
   image(cloudBack, cloudBackX, 10);
-  cloudBackX = cloudBackX - 0.4
+  cloudBackX = cloudBackX - 0.4 // clouds move to the left
 
   // cloud front
   image(cloudFront, cloudFrontX, 10);
-  cloudFrontX = cloudFrontX - 0.6
+  cloudFrontX = cloudFrontX - 0.6 //clouds move to the left
 
   //flower
   console.log(flowerMove);
@@ -121,7 +122,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if (flowerX < -2000) { //flower will repeat when off page
     flowerX = 2000
   }
-  flowerX = flowerX - 1
+  flowerX = flowerX - 1 //flowers move to the left
 
   //road
   fill(150);
@@ -150,26 +151,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if (Xmove < 1) {
     Xmove = 500
   }
-  Xmove = Xmove - 2
+  Xmove = Xmove - 2 //road lines mov to the left
 
   //wheel
-  fill(171, 183, 194)
+  fill(171, 183, 194) // grey
   strokeWeight(10)
-  stroke(0)
+  stroke(0) //black
   ellipse(375, 450, wheelSize, wheelSize) // back wheel
   ellipse(675, 450, wheelSize, wheelSize) // front wheel
 
   //exhaust
   for (let i = 1; i <= vocalMap; i++) {
     let lineStep = i * -5;
-    stroke(255, 100);
+    stroke(255);//white
     strokeWeight(3);
     line(lineStep + 310, start, lineStep + 310, end)
   }
 
   //car
   fill(235, 200, 47) // yellow
-  stroke(235, 200, 47)
+  stroke(235, 200, 47) //yellow
   strokeWeight(4)
   beginShape(); // Shape of car
   vertex(420, carY - 3);
@@ -186,7 +187,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   endShape();
 
   //car window
-  fill(183, 223, 235)
+  fill(183, 223, 235) // light blue
   strokeWeight(0)
   beginShape();
   vertex(557, 322);
@@ -198,7 +199,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   // surfboard
   fill(237, 230, 206)// cream colour
-  stroke(237, 230, 206)
+  stroke(237, 230, 206) //cream colour
   strokeWeight(4);
   beginShape();
   vertex(323, boardY + 27);
@@ -215,7 +216,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   //headlights
   strokeWeight(0)
-  fill(237, 230, 206, 70);
+  fill(237, 230, 206, 70); // yellow colour with 70% opacity
   beginShape();
   vertex(727, 401);
   bezierVertex(725, 396, 939, 363, 1009, 352);
@@ -230,112 +231,5 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   }
   image(title, titleX, 50);
   titleX = titleX - 1
-
-
-
 }
 
-
-
-  //discoball
-  // let discoSize = map(drum, 0, 100, 0.3, 0.36)
-  // push()
-  // scale(discoSize);
-  // image(img, 600, 10);
-  // pop()
-
-//road
-  // line(100, 100, 300, 100)
-
-  // //road
-  // fill(150)
-  // ellipse(road1X, road1Y, 700, 300)//road 1 (bottom)
-  // ellipse(600, 420, 700, 300)// road 2 (middle)
-  // ellipse(600, 150, 500, 200)// road 3 (top)
-
-  // fill(180)
-  // stroke(255)
-  // strokeWeight(0)
-  // ellipse(680, 400, 600, 200)//road 2 inside
-  // ellipse(650, 140, 400, 130)//road 3 inside
-
-
-//ORIGINAL BARS
-// let bar_spacing = height / 10;
-  // let bar_height = width / 12;
-  // let bar_pos_x = width / 2;
-
-
-  // // vocal bar is red
-  // fill(200, 0, 0);
-  // rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-  // fill(0);
-  // text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
-
-  // // drum bar is green
-  // fill(0, 200, 0);
-  // rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-  // fill(0);
-  // text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
-
-  // // bass bar is blue
-  // fill(50, 50, 240);
-  // rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-  // fill(0);
-  // text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
-
-  // // other bar is white
-  // fill(200, 200, 200);
-  // rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-  // fill(0);
-  // text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-  // fill(255, 255, 0);
-
-  // // display "words"
-  // textAlign(CENTER);
-  // textSize(vocal);
-  // text(words, width / 2, height / 3);
-
-
-
-
-
-//PULSING GLITTER SPARKLES
-    // let ellipseLength = map(other, 0, 100, 10, 400)
-  // let circleSize = map(bass, 0, 100, 20, 200);
-  // fill(232, 180, 37)
-
-  // strokeWeight(2);
-  // stroke(255)
-  // ellipse(canvasWidth / 2, canvasHeight / 2, 5, ellipseLength)
-  // ellipse(canvasWidth / 2, canvasHeight / 2, ellipseLength, 5)
-  // ellipse(canvasWidth / 2, canvasHeight / 2, circleSize, circleSize);
-
-
-
-  // strokeWeight(2);
-  // ellipse(canvasWidth / 4, canvasHeight / 4, 5, ellipseLength)
-  // ellipse(canvasWidth / 4, canvasHeight / 4, ellipseLength, 5)
-  // ellipse(canvasWidth / 4, canvasHeight / 4, circleSize, circleSize);
-
-
-  // strokeWeight(2);
-  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, 5, ellipseLength)
-  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, ellipseLength, 5)
-  // ellipse(canvasWidth / 1.3, canvasHeight / 1.3, circleSize, circleSize);
-
-
-
-// line(windowX, windowY - 123, windowX, windowY + 123) //vert window line
-// line(windowX - 200, windowY, windowX + 200, windowY) // horizontal window line
-
-//loop function
-  // let length = 300;
-  // let start = 100;
-  // let end = start + length;
-  // let drumMap = map(vocal, 0, 100, 30, 90)
-  // strokeWeight(5)
-  // for (let i = 1; i <= drumMap; i++) {
-  //   let lineStep = i * 10;
-  //   stroke(255)
-  //   line(start, lineStep, end, lineStep)
